@@ -1,4 +1,4 @@
-const filmEserie = [
+const movieAndSeries = [
     {
         title: "Forrest Gump",
         year: 1994,
@@ -151,15 +151,15 @@ class Tv extends Movie {
     }
 }
 
-const film1 = new Movie('prova1', 2022, 'romantico', 8.8, 'film');
-const serie1 = new Tv('prova2', 2017, 'romantico', 6.8, 'tv', 8);
+const movie1 = new Movie('prova1', 2022, 'romantico', 8.8, 'film');
+const series1 = new Tv('prova2', 2017, 'romantico', 6.8, 'tv', 8);
 
-console.log(film1.toString());
-console.log(serie1.toString());
+console.log(movie1.toString());
+console.log(series1.toString());
 
 //punto 5
 
-let arrayDiIstanze = filmEserie.map(function (element) {
+let arrayOfIstances = movieAndSeries.map(function (element) {
     if (element.type == "movie") {
         return new Movie(element.title, element.year, element.genre, element.rating, element.type);
     } else {
@@ -181,34 +181,34 @@ function media(array, genere) {
     return sum / count;
 }
 
-console.log(media(arrayDiIstanze, "crimine"))
+console.log(media(arrayOfIstances, "crimine"))
 
 //punto 7
 
-function listaGeneri(array) {
-    generi = [];
+function genreLyst(array) {
+    genres = [];
     array.forEach(element => {
-        if (!generi.includes(element.genre)) {
-            generi.push(element.genre);
+        if (!genres.includes(element.genre)) {
+            genres.push(element.genre);
         }
     })
-    return generi
+    return genres
 }
 
-console.log(listaGeneri(arrayDiIstanze))
+console.log(genreLyst(arrayOfIstances))
 
 //punto 8 
 
-function filtraPerGenere(array, genere) {
-    const nuovoArray = array.filter(element => element.genre == genere);
-    const arrayConToString = [];
-    nuovoArray.forEach(element => {
-        arrayConToString.push(element.toString());
+function genreFilter(array, genere) {
+    const newArray = array.filter(element => element.genre == genere);
+    const arrayOfToString = [];
+    newArray.forEach(element => {
+        arrayOfToString.push(element.toString());
     });
-    return arrayConToString;
+    return arrayOfToString;
 }
 
-console.log(filtraPerGenere(arrayDiIstanze, "crimine"));
+console.log(genreFilter(arrayOfIstances, "crimine"));
 
 //bonus 2
 
@@ -230,11 +230,11 @@ class Cart {
         this.#filmList = value;
     }
 
-    aggiungiFilm(film) {
+    addMovie(film) {
         this.filmList.push(film);
     }
 
-    rimuoviFilm(film) {
+    removeMovie(film) {
         for (let i = 0; i < this.filmList.length; i++) {
             if (this.filmList[i] == film) {
                 this.filmList.splice(i, 1);
@@ -242,23 +242,23 @@ class Cart {
         }
     }
 
-    calcolaTotate() {
+    totalPrice() {
         return this.#filmList.length * this.#filmPrice;
     }
 }
 
-const cart1 = new Cart(arrayDiIstanze[1], arrayDiIstanze[6], arrayDiIstanze[4], arrayDiIstanze[9]);
+const cart1 = new Cart(arrayOfIstances[1], arrayOfIstances[6], arrayOfIstances[4], arrayOfIstances[9]);
 
 console.log(cart1);
 
-cart1.aggiungiFilm(arrayDiIstanze[2]);
+cart1.addMovie(arrayOfIstances[2]);
 
 console.log(cart1);
 
-cart1.rimuoviFilm(arrayDiIstanze[9]);
+cart1.removeMovie(arrayOfIstances[9]);
 
 console.log(cart1);
 
-console.log(cart1.calcolaTotate())
+console.log(cart1.totalPrice())
 
 // se nel terminale vedi Movie{} Tv{} Cart{} ѐ perchѐ i valori sono privati e quindi non accessibili col console.log dell'istanza
